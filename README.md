@@ -1,7 +1,5 @@
-# Usage
-
-
-# About 
+# Recon.sh
+ - Automate the intital CTF recon phase
 
 # To-Do 
  - Improve the script to use 
