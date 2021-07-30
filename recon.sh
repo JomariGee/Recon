@@ -40,19 +40,17 @@
 	echo $Purple
 	echo "----------------------- Nmap Vuln Scan --------------------------"
 	echo $White
-	nmap --script vuln $IP -o nmapvuln.txt
+	nmap --script vuln $IP -oN Nmapvuln.txt
 	echo""
+# FFUF Portion 
+	echo $Red
+	echo "----------------------- FFUF Scan --------------------------"
+	echo $White
+	ffuf -c -w ~/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt -u http://$IP/FUZZ -recursion -r -t 50 -o ffuf
+	echo ""
 
 # Nikto Portion
 	echo $Orange
 	echo "----------------------- Nikto Scan --------------------------"
 	echo $White
 	nikto -h $IP -output nikto.txt
-
-
-# Gobuster Portion 
-	echo $Red
-	echo "----------------------- Gobuster Scan --------------------------"
-	echo $White
-	gobuster dir -u $IP -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -n -e -o dir.txt -x asp,bak,cgi,conf,csv,html,jpg,js,json,key,log,lst,php,png,sh,sql,tmp,txt,zip -t 30
-	echo ""
